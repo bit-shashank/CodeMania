@@ -1,20 +1,22 @@
 const express = require("express");
+const path = require('path');
 const app = express();
 require("dotenv").config();
 
 // setting the public static folder
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname)));
 
 // Setting up the view engine
 app.set("view engine", "ejs");
 
 // Route for the home page
+
 // We would be using Router very soon
 app.get("/", (req, res) => {
-	res.render("pages/index.ejs");
+	res.render(path.join(__dirname+"/views/index.ejs"));
 });
 
 //Making the server to listen to a port
-app.listen(process.env.PORT | 9000, () => {
+app.listen(process.env.PORT || 9000, () => {
 	console.log("SERVER STARTED.....");
 });
